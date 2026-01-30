@@ -271,7 +271,7 @@ class SetupDialog:
         f.pack(fill=tk.BOTH, expand=True)
         
         ttk.Label(f, text="Имя:").pack(anchor=tk.W)
-        self.name = tk.StringVar(value="Алекс")
+        self.name = tk.StringVar(value="Куземко Александр Львович")
         ttk.Entry(f, textvariable=self.name, width=40).pack(fill=tk.X, pady=(0,10))
         
         ttk.Label(f, text="Позиция:").pack(anchor=tk.W)

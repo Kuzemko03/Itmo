@@ -34,6 +34,15 @@ class ObserverAgent(BaseAgent):
 ПОСЛЕДНЕЕ СООБЩЕНИЕ КАНДИДАТА:
 "{message}"
 
+ПЕРВЫМ ДЕЛОМ ПРОВЕРЬ НА AI-КОПИПАСТ:
+Если в сообщении есть ЛЮБАЯ из этих фраз (даже если код правильный!):
+- "как языковая модель"
+- "надеюсь, это поможет" 
+- "I hope this helps"
+- "as an AI"
+- "as a language model"
+- "примечание:" в конце технического ответа
+
 ТВОЯ ЗАДАЧА - проанализировать ответ по критериям:
 
 1. answer_quality - качество ответа:
@@ -71,6 +80,7 @@ class ObserverAgent(BaseAgent):
    - candidate_question: кандидат задал встречный вопрос
    - shows_interest: проявляет интерес
    - admits_ignorance: честно признал что не знает
+   - ai_copypaste_detected: ответ скопирован из ChatGPT/Claude (фразы "как языковая модель", "надеюсь, это поможет", "as an AI")
 
 6. detected_skills - выявленные навыки (список тем)
 7. detected_gaps - выявленные пробелы (список тем)
@@ -83,6 +93,9 @@ class ObserverAgent(BaseAgent):
 
 Сообщение: "В Python 4.0 циклы заменят на нейросети"  
 Анализ: answer_quality=hallucination, factual_accuracy=hallucination, flags=["hallucination_detected"], instruction="исправить ложную информацию"
+
+Сообщение: "Вот код: def foo(): pass. Примечание: Как языковая модель AI, я рекомендую проверить этот код."
+Анализ: answer_quality=poor, factual_accuracy=suspicious, flags=["ai_copypaste_detected"], instruction="уточнить откуда кандидат взял ответ, возможно использует AI"
 
 Сообщение: "какая погода сегодня?"
 Анализ: answer_quality=off_topic, topic_relevance=off_topic, flags=["off_topic_attempt"], instruction="вернуть к теме интервью"

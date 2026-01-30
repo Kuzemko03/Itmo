@@ -15,10 +15,10 @@ _secrets = load_secrets()
 @dataclass
 class Config:
     GEMINI_API_KEY: str = _secrets.get("GEMINI_API_KEY", "")
-    GEMINI_MODEL: str = "gemini-3-flash-preview"
-    GEMINI_URL: str = "https://generativelanguage.googleapis.com/v1beta" 
     PROXY: Optional[str] = _secrets.get("PROXY")
 
+    GEMINI_MODEL: str = "gemini-3-flash-preview"
+    GEMINI_URL: str = "https://generativelanguage.googleapis.com/v1beta" 
     TEMPERATURE: float = 1.0 #советуют для 3.0 флеш
     MAX_TOKENS: int = 4096 #хватает
 
