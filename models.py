@@ -30,7 +30,7 @@ class TurnData:
     
     def to_dict(self) -> Dict:
         thoughts_str = "\n".join([
-            f"[{t.agent}]: {t.text.split(chr(10))[0][:150]}" 
+            f"[{t.agent}]: {t.text.split(chr(10))[0][:550]}" 
             for t in self.thoughts
         ])
         return {
